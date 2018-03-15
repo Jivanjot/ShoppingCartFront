@@ -19,6 +19,7 @@
 	<a href="login"> Login</a>
 	<a href="register"> Signup</a>
 	<hr color="blue" size="5">
+	<jsp:include page="productmenu.jsp"></jsp:include>
 	
 ${name}
 ${Error}
