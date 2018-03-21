@@ -2,6 +2,8 @@ package com.shopping;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +18,8 @@ public class HomeController {
 	private Category category;
 	@Autowired
 	private CategoryDao categoryDao;
-	
+	@Autowired
+	private HttpSession httpSession;
 	//http://localhost:8080/ShoppingCartFrontEnd/
 	@GetMapping("/")
 	public ModelAndView  home()
@@ -24,7 +27,7 @@ public class HomeController {
 		
 		ModelAndView mv = new ModelAndView("home");
 		List<Category> categories=categoryDao.getAll();
-		mv.addObject("categories",categories);
+		httpSession.setAttribute("categories",categories);
 		
 		
 	

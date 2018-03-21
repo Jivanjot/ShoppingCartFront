@@ -22,22 +22,20 @@
 	<jsp:include page="productmenu.jsp"></jsp:include>
 	
 ${name}
-${Error}
+${Error}<br><br>
 	
-	
+<c:if test="${isAdmin==true}">
+<jsp:include page="admin/adminhome.jsp"></jsp:include></c:if>
+
 	
 ${success}
 ${error1}	
 	
-	
-	
-	
-
-	<c:if test="${isUserClickedLogin==true }">
+	<c:if test="${isUserClickedLogin==true}">
 	<jsp:include page="login.jsp"></jsp:include></c:if>
 		
 	
-<c:if test="${isUserClickedRegister==true }">
+<c:if test="${isUserClickedRegister==true}">
 		<jsp:include page="register.jsp"></jsp:include>
 </c:if>	
 

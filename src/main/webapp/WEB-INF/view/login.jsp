@@ -61,7 +61,7 @@ color:grey;
 <h2>Login</h2>
 <br>
 
-USERNAME<input type="text" name="email" placeholder="Email Id" required>
+EMAIL<input type="text" name="email" placeholder="Email Id" style="text-transform:lowercase;" required>
 <br>
 <br>
 PASSWORD<input type="password" name="password" placeholder="Password" required>

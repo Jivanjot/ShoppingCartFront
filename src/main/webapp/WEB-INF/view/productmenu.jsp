@@ -67,39 +67,29 @@ li.dropdown {
     <c:forEach items="${categories}" var="category"> 
      <li class="dropdown"><a href="javascript:void(0)" class="dropbtn">${category.name}</a>
      
-    <c:forEach items="${category.products}" var="products"> 
+   
+    
      <div class="dropdown-content">
-				<a href="#">TV</a> <a href="#">${products.name}</a> </div>
      
-     </c:forEach>
+ <c:forEach items="${category.products}" var="products">
+				<a href ="#">${products.name}</a>
+	
+				 </c:forEach> 
+	
+				 </div>
+     
+    
      
      
-     </li>
      
+   </li>  
     </c:forEach>
+   
 
 </ul>
 
 
 
-
-
-
-
-		<!-- <li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Eelectronics</a>
-			<div class="dropdown-content">
-				<a href="#">TV</a> <a href="#">Mobile</a> <a href="#">Laptop</a>
-			</div></li>
-		<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Books</a>
-			<div class="dropdown-content">
-				<a href="#">Java</a> <a href="#">HTML</a> <a href="#">AngularJS</a>
-			</div></li>
-
-		<li class="dropdown"><a href="javascript:void(0)" class="dropbtn">Furniture</a>
-			<div class="dropdown-content">
-				<a href="#">Chairs</a> <a href="#">Tables</a> <a href="#">Beds</a>
-			</div></li> -->
-	
 
 </body>
 </html>

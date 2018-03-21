@@ -30,7 +30,7 @@ public class RegisterController {
 			user.setName(name);
 			user.setMobile(mobile);
 			user.setPassword(pass);
-			user.setRole();
+			user.setRole('C');
 			user.setRegisterdate();
 			boolean a=userDao.save(user);
 			
@@ -47,7 +47,7 @@ public class RegisterController {
 			return mv;
 		} catch (Exception e) {
 		       ModelAndView mv=new ModelAndView("home");
-		       mv.addObject("error1",e.getCause().toString());
+		       mv.addObject("error1","Try some different EmailId");
 		       return mv;
 			
 			}

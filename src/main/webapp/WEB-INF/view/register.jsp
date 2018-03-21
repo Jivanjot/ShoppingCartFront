@@ -17,8 +17,8 @@ padding:60px;
 width:240px;
 margin:auto;
 margin-top:70px;
-padding-bottom:200px;
-padding-top:60px;
+padding-bottom:270px;
+padding-top:50px;
 
 height:300px;
 }
@@ -63,16 +63,33 @@ text-align:left;
 </style>
 <title>SignUp Form</title>
 </head>
+<script>
+function myfun(){
+	var a=document.getElementById("pass").value;
+	var b=document.getElementById("pass1").value;
+	if(a!=b)
+		{
+		document.getElementById("demo").innerHTML="Passwords are not same";
+		return false;
+		}
+	
+	
+}
+</script>
+
+
 <body>
 
-<form class="signup" action="register" method="post">
+<form class="signup" onsubmit="return myfun()" action="register" method="post">
 <h2>SignUp</h2>
 Name: <input type="text" name="name" placeholder="Name" required><br><br>
-Email Id:<input type="text" name="email" placeholder="Email" required><br><br>
+Email Id:<input type="text" name="email" placeholder="Email" style="text-transform:lowercase;" required><br><br>
 Mobile No: <input type="number" name="mobile" placeholder="Mobile" required><br><br>
-Password:<input type="password" name="pass" placeholder="Password" required><br><br>
-<!-- Re-enter:<input type="password" name="pass1" placeholder="Re-enter" required><br><br>
- --> 
+Password:<input type="password" id="pass" name="pass" placeholder="Password" required>
+<span id="demo" style="color:red"></span><br><br>
+
+Confirm Password:<input type="password" id="pass1" name="pass1" placeholder="Confirm Password" required><br><br>
+  
 
 
 

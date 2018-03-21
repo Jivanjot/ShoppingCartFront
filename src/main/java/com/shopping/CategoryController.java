@@ -2,6 +2,8 @@ package com.shopping;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,21 +21,30 @@ public class CategoryController {
 	private Category category;
 	@Autowired
 	private CategoryDao categoryDao;
+	@Autowired
+	HttpSession httpSession;
 
-	@PostMapping("/category/save")
-	public ModelAndView saveCategory(@RequestBody Category category) {
+	@PostMapping("/categorysave/")
+	public ModelAndView saveCategory(@RequestParam("id") String id,@RequestParam("name") String name,@RequestParam("description") String description) {
 		ModelAndView mv = new ModelAndView("home");
+		     category.setId(id);
+		     category.setName(name);
+		     category.setDescription(description);
+		
 		if (categoryDao.save(category) == true) {
 			mv.addObject("success", "Category added");
+			List<Category> categories=categoryDao.getAll();
+			httpSession.setAttribute("categories",categories);
+			
 			return mv;
 		} else {
-			mv.addObject("error", "Category not added");
+			mv.addObject("error1", "Category not added");
 			return mv;
 		}
 
 	}
 
-	@PostMapping("/category/update")
+	@PostMapping("/categoryupdate")
 	public ModelAndView updateCategory(@RequestBody Category category) {
 		ModelAndView mv = new ModelAndView("home");
 		if (categoryDao.update(category) == true) {
@@ -46,7 +57,7 @@ public class CategoryController {
 
 	}
 
-	@GetMapping("/category/select")
+	@GetMapping("/categoryselect")
 	public ModelAndView selectCategory(@RequestParam("id") String id) {
 		ModelAndView mv = new ModelAndView("home");
 		category = categoryDao.select(id);
@@ -54,7 +65,7 @@ public class CategoryController {
 		return mv;
 	}
 
-	@GetMapping("/category/delete")
+	@GetMapping("/categorydelete")
 	public ModelAndView deleteCategory(@RequestParam("id") String id) {
 		ModelAndView mv = new ModelAndView("home");
 		if (categoryDao.delete(id) == true) {
@@ -68,7 +79,7 @@ public class CategoryController {
 		}
 	}
 
-	@GetMapping("/category/getall")
+	@GetMapping("/categorygetall")
 	public ModelAndView getAllCategory(@RequestParam("id") String id) {
 		ModelAndView mv = new ModelAndView("home");
 		List<Category> c = categoryDao.getAll();
