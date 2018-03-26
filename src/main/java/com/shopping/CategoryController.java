@@ -24,37 +24,32 @@ public class CategoryController {
 	@Autowired
 	HttpSession httpSession;
 
-	@PostMapping("/categorysave/")
+	@PostMapping("/categorysave")
 	public ModelAndView saveCategory(@RequestParam("id") String id,@RequestParam("name") String name,@RequestParam("description") String description) {
-		ModelAndView mv = new ModelAndView("home");
+		ModelAndView mv = new ModelAndView("redirect:/managecategories");
 		     category.setId(id);
 		     category.setName(name);
 		     category.setDescription(description);
 		
 		if (categoryDao.save(category) == true) {
 			mv.addObject("success", "Category added");
-			List<Category> categories=categoryDao.getAll();
-			httpSession.setAttribute("categories",categories);
 			
-			return mv;
+		
 		} else {
 			mv.addObject("error1", "Category not added");
-			return mv;
+			
 		}
-
+		return mv;
 	}
 
-	@PostMapping("/categoryupdate")
-	public ModelAndView updateCategory(@RequestBody Category category) {
-		ModelAndView mv = new ModelAndView("home");
-		if (categoryDao.update(category) == true) {
-			mv.addObject("success", "Category updated");
-			return mv;
-		} else {
-			mv.addObject("error", "Category not updated");
-			return mv;
-		}
-
+	@GetMapping("/categoryupdate{id}")
+	public ModelAndView updateCategory(@RequestParam("id") String id) {
+		ModelAndView mv = new ModelAndView("redirect:/managecategories");
+	Category selectedcategory=	categoryDao.select(id);
+	httpSession.setAttribute("selectedcategory", selectedcategory);
+		return mv;
+		
+		
 	}
 
 	@GetMapping("/categoryselect")
@@ -65,9 +60,9 @@ public class CategoryController {
 		return mv;
 	}
 
-	@GetMapping("/categorydelete")
+	@GetMapping("/categorydelete{id}")
 	public ModelAndView deleteCategory(@RequestParam("id") String id) {
-		ModelAndView mv = new ModelAndView("home");
+		ModelAndView mv = new ModelAndView("redirect:/managecategories");
 		if (categoryDao.delete(id) == true) {
 			mv.addObject("success", "Category deleted");
 			return mv;

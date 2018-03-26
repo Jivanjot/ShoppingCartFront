@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -12,15 +14,15 @@
 <table>
 <tr>
 <td>Id</td>
-<td><input type="text" name="id" ></td></tr>
+<td><input type="text" name="id" value="${selectedcategory.id}"></td></tr>
 
 <tr>
 <td>Name</td>
-<td><input type="text" name="name" ></td></tr>
+<td><input type="text" name="name" value="${selectedcategory.name}"></td></tr>
 
 <tr>
 <td>Description</td>
-<td><input type="text" name="description" ></td></tr>
+<td><input type="text" name="description" value="${selectedcategory.description}"></td></tr>
 
 
 <tr>
@@ -31,20 +33,32 @@
 </form>
 <br><br><br>
 
-
+<div>
 <h2>Category List</h2><br>
-<table>
+<table border="1px solid" width="50%" style="border-collapse: collapse;border: medium;">
 <tr>
-<td>Category Id</td>
-<td>Category Name</td>
-<td>Category Description</td>
+<td>Category Id  </td>
+<td>Category Name  </td>
+<td>Category Description  </td>
 <td>Action</td>
+</tr>
 
-
+<c:forEach items="${categories}" var="category">
+<tr>
+<td>${category.id}</td>
+<td>${category.name}</td>
+<td>${category.description}</td>
+<td><a href="categorydelete?id=${category.id}">Delete</a>|
+<a href="categoryupdate?id=${category.id}">Edit</a></td>
+</tr>
+</c:forEach>
+ 
+ 
+ 
 </table>
 
 
-
+</div>
 
 </body>
 </html>

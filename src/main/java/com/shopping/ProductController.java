@@ -15,8 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.shopping.dao.CategoryDao;
 import com.shopping.dao.ProductDao;
+import com.shopping.dao.SupplierDao;
 import com.shopping.domain.Category;
 import com.shopping.domain.Product;
+import com.shopping.domain.Supplier;
 
 @Controller
 public class ProductController {
@@ -28,15 +30,23 @@ public class ProductController {
 	private Category category;
 	@Autowired
 	private CategoryDao categoryDao;
+	@Autowired
+	private Supplier supplier;
+	@Autowired
+	private SupplierDao supplierDao;
 @Autowired
 HttpSession httpSession;
 	
 	@PostMapping("/productsave")
-	public ModelAndView saveProduct(@ModelAttribute Product product) {
-		ModelAndView mv = new ModelAndView("home");
+	public ModelAndView saveProduct(@RequestParam("id") String id,@RequestParam("name") String name,@RequestParam("description") String description,@RequestParam("price") String price,@RequestParam("categoryId") String categoryId,@RequestParam("supplierId") String supplierId) {
+		ModelAndView mv = new ModelAndView("redirect:/manageproducts");
+		product.setId(id);
+		product.setName(name);
+		product.setDescription(description);
+		product.setPrice(Integer.parseInt(price));
+		product.setCategory(categoryDao.select(categoryId));
+		product.setSupplier(supplierDao.select(supplierId));
 		if (productDao.save(product) == true) {
-			List<Category> categories=	categoryDao.getAll();
-			httpSession.setAttribute("categories",categories);
 			mv.addObject("success", "Product added");
 			return mv;
 		} else {
@@ -46,17 +56,13 @@ HttpSession httpSession;
 
 	}
 
-	@PostMapping("/productupdate")
-	public ModelAndView updateProduct(@RequestBody Product product) {
-		ModelAndView mv = new ModelAndView("home");
-		if (productDao.update(product) == true) {
-			mv.addObject("success", "Product updated");
-			return mv;
-		} else {
-			mv.addObject("error", "Product not updated");
-			return mv;
-		}
-
+	@GetMapping("/productupdate{id}")
+	public ModelAndView updateProduct(@RequestParam("id") String id) {
+		ModelAndView mv = new ModelAndView("redirect:/manageproducts");
+		product=productDao.select(id);	
+		httpSession.setAttribute("selectedproduct",product);
+		return mv;
+		
 	}
 
 	@GetMapping("/productselect")
@@ -67,9 +73,9 @@ HttpSession httpSession;
 		return mv;
 	}
 
-	@GetMapping("/productdelete")
+	@GetMapping("/productdelete{id}")
 	public ModelAndView deleteProduct(@RequestParam("id") String id) {
-		ModelAndView mv = new ModelAndView("home");
+		ModelAndView mv = new ModelAndView("redirect:/manageproducts");
 		if (productDao.delete(id) == true) {
 			mv.addObject("success", "Product deleted");
 			return mv;

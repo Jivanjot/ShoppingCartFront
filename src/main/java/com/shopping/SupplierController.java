@@ -26,7 +26,7 @@ public class SupplierController {
 HttpSession httpSession;
 	@PostMapping("/suppliersave")
 	public ModelAndView saveSupplier(@ModelAttribute Supplier supplier) {
-		ModelAndView mv = new ModelAndView("home");
+		ModelAndView mv = new ModelAndView("redirect:/managesuppliers");
 		if (supplierDao.save(supplier) == true) {
 	               
 			mv.addObject("success", "Supplier added");
@@ -39,17 +39,15 @@ HttpSession httpSession;
 
 	}
 
-	@PostMapping("/supplierupdate")
-	public ModelAndView updateSupplier(@RequestBody Supplier supplier) {
-		ModelAndView mv = new ModelAndView("home");
-		if (supplierDao.update(supplier) == true) {
-			mv.addObject("success", "Supplier updated");
-			return mv;
-		} else {
-			mv.addObject("error", "Supplier not updated");
-			return mv;
-		}
-
+	@GetMapping("/supplierupdate")
+	public ModelAndView updateSupplier(@RequestParam("id") String id) {
+		ModelAndView mv = new ModelAndView("redirect:/managesuppliers");
+	Supplier	selectedsupplier=  supplierDao.select(id);
+     httpSession.setAttribute("selectedsupplier",selectedsupplier);
+     return mv;
+		
+		
+		
 	}
 
 	@GetMapping("/supplierselect")
@@ -60,18 +58,19 @@ HttpSession httpSession;
 		return mv;
 	}
 
-	@GetMapping("/supplierdelete")
+	@GetMapping("/supplierdelete{id}")
 	public ModelAndView deleteSupplier(@RequestParam("id") String id) {
-		ModelAndView mv = new ModelAndView("home");
+		ModelAndView mv = new ModelAndView("redirect:/managesuppliers");
 		if (supplierDao.delete(id) == true) {
 			mv.addObject("success", "Supplier deleted");
-			return mv;
+			
 		}
 
 		else {
 			mv.addObject("error1", "Supplier not deleted");
-			return mv;
+		
 		}
+		return mv;
 	}
 
 	@GetMapping("/suppliergetall")

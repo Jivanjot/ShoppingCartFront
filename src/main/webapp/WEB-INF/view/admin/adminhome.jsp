@@ -15,9 +15,14 @@
 <a href="managesuppliers">Manage Suppliers</a><br><br>
 <a href="manageproducts">Manage Products</a><br><br>
 
+
+
 <c:if test="${isAdminClickedCategory==true}">
 <jsp:include page="category.jsp"></jsp:include>
 </c:if>
+
+
+
 <c:if test="${isAdminClickedSupplier==true}">
 <jsp:include page="supplier.jsp"></jsp:include>
 </c:if>
