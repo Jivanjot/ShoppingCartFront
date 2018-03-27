@@ -9,9 +9,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<script>
+function myFunction() {
+    document.getElementById("myForm").refresh();
+}
+</script>
 
 
-	<form action="productsave" method="post">
+	<form id="myForm"  action="productsave" method="post" onsubmit="myFunction()" >
 		<table>
 			<tr>
 				<td>Id</td>
@@ -36,9 +41,9 @@
 
 			<tr>
 				<td>Category </td>
-				<td><select>
+				<td><select name="categoryId">
 						<c:forEach items="${categories }" var="category">
-							<option value="${category.id}" id="categoryId">${category.name}
+							<option value="${category.id}">${category.name}
 							</option>
 						</c:forEach>
 				</select></td>
@@ -46,9 +51,9 @@
 
 			<tr>
 				<td>Supplier </td>
-				<td><select>
+				<td><select name="supplierId">
 						<c:forEach items="${suppliers }" var="supplier">
-							<option value="${supplier.id}" id="supplierId">${supplier.name}
+							<option  value="${supplier.id}" >${supplier.name}
 							</option>
 						</c:forEach>
 				</select></td>

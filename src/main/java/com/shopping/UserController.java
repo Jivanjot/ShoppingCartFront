@@ -2,6 +2,8 @@ package com.shopping;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +15,8 @@ import com.shopping.domain.User;
 
 @Controller
 public class UserController {
+	
+	private static final Logger log=LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
 	private User user;
@@ -25,7 +29,8 @@ public class UserController {
 	@PostMapping("/validate")
 	public ModelAndView user(@RequestParam("email") String name,@RequestParam("password") String pass)
 {
- ModelAndView mv=new ModelAndView("home");
+    log.debug("starting of validate method in User Controller");
+		ModelAndView mv=new ModelAndView("home");
  
   user=userDao.validate(name, pass);
    if(user==null)

@@ -9,8 +9,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+<script>
+function myFunction() {
+    document.getElementById("myForm").refresh();
+}
+</script>
 
-<form action="categorysave" method="post">
+<form id="myForm" action="categorysave" method="post"  onsubmit="myFunction()" >
 <table>
 <tr>
 <td>Id</td>

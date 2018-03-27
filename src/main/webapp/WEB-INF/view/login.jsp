@@ -56,11 +56,12 @@ color:grey;
 </style>
 </head>
 <body>
+<img align="top" style="align-self:auto;" height="200" width="200" alt="userimage" src="resources/images/user.png">
+
 <div class="login">
 <form action="validate" method="post">
 <h2>Login</h2>
 <br>
-
 EMAIL<input type="text" name="email" placeholder="Email Id" style="text-transform:lowercase;" required>
 <br>
 <br>

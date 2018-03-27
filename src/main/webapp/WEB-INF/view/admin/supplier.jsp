@@ -9,8 +9,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<script>
+function myFunction() {
+    document.getElementById("myForm").refresh();
+}
+</script>
 
-<form action="suppliersave" method="post">
+
+<form id="myForm" action="suppliersave" method="post" onsubmit="myFunction()">
 <table>
 <tr>
 <td>Id</td>
@@ -32,7 +38,7 @@
 
 </form>
 <div>
-<table>
+<table border="1px solid" border: medium;>
 <tr><td>Id</td>
 <td>Name</td>
 <td>Address</td>                   

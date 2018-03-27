@@ -44,8 +44,9 @@ HttpSession httpSession;
 		product.setName(name);
 		product.setDescription(description);
 		product.setPrice(Integer.parseInt(price));
-		product.setCategory(categoryDao.select(categoryId));
-		product.setSupplier(supplierDao.select(supplierId));
+	    product.setCategoryId(categoryId);
+		product.setSupplierId(supplierId);
+		
 		if (productDao.save(product) == true) {
 			mv.addObject("success", "Product added");
 			return mv;
