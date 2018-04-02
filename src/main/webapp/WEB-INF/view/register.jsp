@@ -1,70 +1,41 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<style>
-body{
-font-family:Arial;
-background:#fff;
-}
-.signup
-{
-background:#3498db;
-padding:60px;
-width:240px;
-margin:auto;
-margin-top:70px;
-padding-bottom:270px;
-padding-top:50px;
-
-height:300px;
-}
-form
-{
-width:240px;
-
-text-align:center;
-}
-h2{
-color:grey;
-}
-
-input{
-width:240px;
-text-align:center;
-background:#ecff1;
-border:2px solid transparent;
-border-radius:3px;
-font-size:16px;
-font-weight:200;
-padding:10px;
-transition:border .5s;
-}
-input[type=submit]{
-border:2px solid transparent;
-background:#3498db;
-color:white;
-font-size:16px;
-line-height:25px;
-padding:10px 0;
-border-radius:3px;
-}
-input[type=submit]:hover{
-background:#2980b9;
-}
-input[type=radio]
-{
-text-align:left;
-}
-
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bootstrap Simple Login Form</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<style type="text/css">
+	.login-form {
+		width: 340px;
+    	margin: 50px auto;
+	}
+    .login-form form {
+    	margin-bottom: 15px;
+        background: #f7f7f7;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+    }
+    .login-form h2 {
+        margin: 0 0 15px;
+    }
+    .form-control, .btn {
+        min-height: 38px;
+        border-radius: 2px;
+    }
+    .btn {        
+        font-size: 15px;
+        font-weight: bold;
+    }
 </style>
-<title>SignUp Form</title>
 </head>
 <script>
 function myfun(){
+	
+	
 	var a=document.getElementById("pass").value;
 	var b=document.getElementById("pass1").value;
 	if(a!=b)
@@ -73,35 +44,40 @@ function myfun(){
 		return false;
 		}
 	
-	
-}
-</script>
-
-
+}</script>
 <body>
-
-<form class="signup" onsubmit="return myfun()" action="register" method="post">
-<h2>SignUp</h2>
-Name: <input type="text" name="name" placeholder="Name" required><br><br>
-Email Id:<input type="text" name="email" placeholder="Email" style="text-transform:lowercase;" required><br><br>
-Mobile No: <input type="number" name="mobile" placeholder="Mobile" required><br><br>
-Password:<input type="password" id="pass" name="pass" placeholder="Password" required>
-<span id="demo" style="color:red"></span><br><br>
-
-Confirm Password:<input type="password" id="pass1" name="pass1" placeholder="Confirm Password" required><br><br>
-  
+<div class="login-form">
+    <form name="form1" onsubmit="return myfun()" action="register" method="post">
+        <h2 class="text-center">Sign Up</h2>       
+        <div class="form-group">
+            <input type="text" name="name" class="form-control" placeholder="Name" required="required">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="email" placeholder="Email" required="required">
+        </div>
 
 
+ 
+        <div class="form-group">
+            <input type="number" class="form-control" name="mobile" placeholder="Mobile" required="required">
+        </div>
 
-<input  type="submit" value="SignUp"><br>
-<input type="Reset" value="Reset">
+        <div class="form-group">
+            <input type="password"  id="pass" class="form-control" name="pass" placeholder="Password" required="required">
+        </div>
 
 
-
-
-</form>
-
-
-
+        <div class="form-group">
+            <input type="password"  id="pass1" class="form-control" name="pass1" placeholder="Confirm Password" required="required">
+        </div>
+ 
+       
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+        </div>
+<span id="demo" style="color:red">               
+    </form>
+    
+</div>
 </body>
-</html>
+</html>                                		                            

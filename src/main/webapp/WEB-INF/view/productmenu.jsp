@@ -6,77 +6,34 @@
 
 <html>
 <head>
+
 <style>
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #444;
-}
 
-li {
-	float: left;
-}
-
-li a, .dropbtn {
-	display: inline-block;
-	color: white;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-}
-
-li a:hover, .dropdown:hover .dropbtn {
-	background-color: red;
-}
-
-li.dropdown {
-	display: inline-block;
-}
-
-.dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: #f9f9f9;
-	min-width: 160px;
-	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-	z-index: 1;
-}
-
-.dropdown-content a {
-	color: black;
-	padding: 12px 16px;
-	text-decoration: none;
-	display: block;
-	text-align: left;
-}
-
-.dropdown-content a:hover {
-	background-color: #f1f1f1
-}
-
-.dropdown:hover .dropdown-content {
-	display: block;
-}
 </style>
 </head>
 <body>
 
-	<ul>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header"></div>
+      
+    
+    <ul class="nav navbar-nav">
+	
     <c:forEach items="${categories}" var="category"> 
-     <li class="dropdown"><a href="javascript:void(0)" class="dropbtn">${category.name}</a>
+     <li class="dropdown"><a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">${category.name}<span class="caret"></span></a>
      
    
     
-     <div class="dropdown-content">
+     <ul class="dropdown-menu">
      
  <c:forEach items="${category.products}" var="products">
-				<a href ="#">${products.name}</a>
+				 <li><a href ="productselect?id=${products.id}">${products.name}</a></li>
 	
 				 </c:forEach> 
-	
-				 </div>
+	 </ul>
+				
      
     
      
@@ -88,20 +45,9 @@ li.dropdown {
 
 </ul>
 
-
+</div>
+</nav>
 
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

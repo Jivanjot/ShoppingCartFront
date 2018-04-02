@@ -16,31 +16,31 @@ function myFunction() {
 </script>
 
 
-	<form id="myForm"  action="productsave" method="post" onsubmit="myFunction()" >
-		<table>
+	<form id="myForm"  action="productsave" method="post" onsubmit="myFunction()" enctype="multipart/form-data" >
+		<table align="center">
 			<tr>
-				<td>Id</td>
+				<td style="font-family: sans-serif;font: bold;">Id</td>
 				<td><input type="text" name="id" value="${selectedproduct.id}"></td>
 			</tr>
 
 			<tr>
-				<td>Name</td>
+				<td style="font-family: sans-serif;font: bold;">Name</td>
 				<td><input type="text" name="name" value="${selectedproduct.name}"></td>
 			</tr>
 
 			<tr>
-				<td>Description</td>
+				<td style="font-family: sans-serif;font: bold;">Description</td>
 				<td><input type="text" name="description" value="${selectedproduct.description}"></td>
 			</tr>
 
 <tr>
-				<td>Price</td>
+				<td style="font-family: sans-serif;font: bold;">Price</td>
 				<td><input type="text" name="price" value="${selectedproduct.price}"></td>
 			</tr>
 
 
 			<tr>
-				<td>Category </td>
+				<td style="font-family: sans-serif;font: bold;">Category </td>
 				<td><select name="categoryId">
 						<c:forEach items="${categories }" var="category">
 							<option value="${category.id}">${category.name}
@@ -50,13 +50,17 @@ function myFunction() {
 			</tr>
 
 			<tr>
-				<td>Supplier </td>
+				<td style="font-family: sans-serif;font: bold;">Supplier </td>
 				<td><select name="supplierId">
 						<c:forEach items="${suppliers }" var="supplier">
 							<option  value="${supplier.id}" >${supplier.name}
 							</option>
 						</c:forEach>
 				</select></td>
+			</tr>
+			<tr>
+			<td style="font-family: sans-serif;font: bold;">Upload Image</td>
+			<td><input type="file" name="file">   </td>
 			</tr>
 
 
@@ -69,16 +73,16 @@ function myFunction() {
 
 	<div>
 
-		<h2>Products List</h2>
-		<table border="1px solid" border: medium;">
+		<h2 align="center">Products List</h2>
+		<table border="1px solid" border: medium; align="center">
 			<tr>
-				<td>Product Id</td>
-				<td>Product Name</td>
-				<td>Product Description</td>
-				<td>Product Price</td>
-				<td>Category Id</td>
-				<td>Supplier Id</td>
-				<td>Action</td>
+				<th bgcolor="grey">Product Id</th>
+				<th bgcolor="grey">Product Name</th>
+				<th bgcolor="grey">Product Description</th>
+				<th bgcolor="grey">Product Price</th>
+				<th bgcolor="grey">Category Id</th>
+				<th bgcolor="grey">Supplier Id</th>
+				<th bgcolor="grey">Action</th>
 			</tr>
 
 

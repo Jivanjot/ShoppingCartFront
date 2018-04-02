@@ -1,82 +1,56 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Login Form</title>
-<style>
-body{
-font-family:Arial;
-background:#fff;
-}
-.login{
-background:#3498db;
-padding:40px;
-width:240px;
-margin:auto;
-margin-top:70px;
-height:300px;
-
-}
-form
-{
-width:240px;
-text-align:center;
-}
-input{
-width:240px;
-text-align:center;
-background:#ecff1;
-border:2px solid transparent;
-border-radius:3px;
-font-size:16px;
-font-weight:200;
-padding:10px;
-transition:border .5s;
-}
-input[type=submit]{
-border:2px solid transparent;
-background:#3498db;
-color:white;
-font-size:16px;
-line-height:25px;
-padding:10px 0;
-border-radius:3px;
-}
-input[type=submit]:hover{
-background:#2980b9;
-}
-h2{
-color:grey;
-}
-
-
-
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bootstrap Simple Login Form</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+<style type="text/css">
+	.login-form {
+		width: 340px;
+    	margin: 50px auto;
+	}
+    .login-form form {
+    	margin-bottom: 15px;
+        background: #f7f7f7;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+    }
+    .login-form h2 {
+        margin: 0 0 15px;
+    }
+    .form-control, .btn {
+        min-height: 38px;
+        border-radius: 2px;
+    }
+    .btn {        
+        font-size: 15px;
+        font-weight: bold;
+    }
 </style>
 </head>
 <body>
-<img align="top" style="align-self:auto;" height="200" width="200" alt="userimage" src="resources/images/user.png">
-
-<div class="login">
-<form action="validate" method="post">
-<h2>Login</h2>
-<br>
-EMAIL<input type="text" name="email" placeholder="Email Id" style="text-transform:lowercase;" required>
-<br>
-<br>
-PASSWORD<input type="password" name="password" placeholder="Password" required>
-<br>
-<br>
-<input type ="submit" value="Login">
-<input type="reset" value="Reset">
-<br>
-<br>
-
-
-</form>
+<div class="login-form">
+    <form action="validate" method="post">
+        <h2 class="text-center">Log in</h2>       
+        <div class="form-group">
+            <input type="text" name="email" class="form-control" placeholder="Email" required="required">
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" name="password" placeholder="Password" required="required">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        </div>
+        <div class="clearfix">
+            <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
+            <a href="forgotpassword" class="pull-right">Forgot Password?</a>
+        </div>        
+    </form>
+    
 </div>
-
-
 </body>
-</html>
+</html>                                		                            

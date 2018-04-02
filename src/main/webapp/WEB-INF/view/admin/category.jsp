@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,61 +9,70 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script>
-function myFunction() {
-    document.getElementById("myForm").refresh();
-}
-</script>
+	<script>
+		function myFunction() {
+			document.getElementById("myForm").refresh();
+		}
+	</script>
 
-<form id="myForm" action="categorysave" method="post"  onsubmit="myFunction()" >
-<table>
-<tr>
-<td>Id</td>
-<td><input type="text" name="id" value="${selectedcategory.id}"></td></tr>
+	<form id="myForm" action="categorysave" method="post"
+		onsubmit="myFunction()">
+		<table align="center">
+			<tr>
+				<td style="font-family: sans-serif;font: bold;">Id</td>
+				<td><input type="text" name="id" value="${selectedcategory.id}"></td>
+			</tr>
 
-<tr>
-<td>Name</td>
-<td><input type="text" name="name" value="${selectedcategory.name}"></td></tr>
+			<tr>
+				<td style="font-family: sans-serif;font: bold;">Name</td>
+				<td><input type="text" name="name"
+					value="${selectedcategory.name}"></td>
+			</tr>
 
-<tr>
-<td>Description</td>
-<td><input type="text" name="description" value="${selectedcategory.description}"></td></tr>
-
-
-<tr>
-<td><input type="submit" value="Save">
-</td></tr>
-</table>
-
-</form>
-<br><br><br>
-
-<div>
-<h2>Category List</h2><br>
-<table border="1px solid" width="50%" style="border-collapse: collapse;border: medium;">
-<tr>
-<td>Category Id  </td>
-<td>Category Name  </td>
-<td>Category Description  </td>
-<td>Action</td>
-</tr>
-
-<c:forEach items="${categories}" var="category">
-<tr>
-<td>${category.id}</td>
-<td>${category.name}</td>
-<td>${category.description}</td>
-<td><a href="categorydelete?id=${category.id}">Delete</a>|
-<a href="categoryupdate?id=${category.id}">Edit</a></td>
-</tr>
-</c:forEach>
- 
- 
- 
-</table>
+			<tr>
+				<td style="font-family: sans-serif;font: bold;">Description</td>
+				<td><input type="text" name="description"
+					value="${selectedcategory.description}"></td>
+			</tr>
 
 
-</div>
+			<tr>
+				<td><input type="submit" value="Save"></td>
+			</tr>
+		</table>
+
+	</form>
+	<br>
+	<br>
+	<br>
+
+	<div>
+		<h2 align="center">Category List</h2>
+		<br>
+		<table border="1px solid" border: medium; align="center">
+			<tr>
+				<th bgcolor="grey">Category Id</th>
+				<th bgcolor="grey">Category Name</th>
+				<th bgcolor="grey">Category Description</th>
+				<th bgcolor="grey">Action</th>
+			</tr>
+
+			<c:forEach items="${categories}" var="category">
+				<tr>
+					<td>${category.id}</td>
+					<td>${category.name}</td>
+					<td>${category.description}</td>
+					<td><a href="categorydelete?id=${category.id}">Delete</a>| <a
+						href="categoryupdate?id=${category.id}">Edit</a></td>
+				</tr>
+			</c:forEach>
+
+
+
+		</table>
+
+
+	</div>
 
 </body>
 </html>
