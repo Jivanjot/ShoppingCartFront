@@ -11,17 +11,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FileUtil {
 	
-	private static String rootPath = System.getProperty("catalina.home");
-    private static final String imageDirectory="ShoppingCartImages";
+	//private static String rootPath = System.getProperty("catalina.home");
+	private static String rootPath="E:\\project\\maven\\ShoppingCartFE\\src\\main\\webapp\\resources\\images\\ShoppingCartImages";
+	
 	
 	
 	public static boolean copyFile(MultipartFile file, String filename) {
 		
-		File dest=new File(rootPath+File.separator+imageDirectory+File.separator+filename);
+		File dest=new File(rootPath+File.separator+filename);
 	    
-		if(!dest.exists()) {
+		/*if(!dest.exists()) {
 			dest.mkdirs();
-		}
+		}*/
 		
 		
 		try {

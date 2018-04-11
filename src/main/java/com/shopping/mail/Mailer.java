@@ -4,7 +4,7 @@ import java.util.Properties;
 import javax.mail.*;    
 import javax.mail.internet.*;    
  public class Mailer{  
-    public static void send(final String from,final String password,String to,String sub,String msg){  
+    public static boolean send(final String from,final String password,String to,String sub,String msg){  
           //Get properties object    
           Properties props = new Properties();    
           props.put("mail.smtp.host", "smtp.gmail.com");    
@@ -28,8 +28,15 @@ import javax.mail.internet.*;
            message.setText(msg);    
            //send message  
            Transport.send(message);    
-           System.out.println("message sent successfully");    
-          } catch (MessagingException e) {throw new RuntimeException(e);}    
+           System.out.println("message sent successfully");
+           return true;
+          } 
+          catch (MessagingException e) {
+        	  System.out.println("fail");
+              return false;
+
+        	  //throw new RuntimeException(e);
+          }    
              
     }  
 }  

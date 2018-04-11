@@ -15,57 +15,65 @@
 		}
 	</script>
 
-
-	<form id="myForm" action="suppliersave" method="post"
-		onsubmit="myFunction()">
-		<table align="center">
+<div style="text-align: center;">
+	<form id="myForm" action="suppliersave" method="post"   onsubmit="myFunction()">
+		<table align="center" width="500">
 			<tr>
-				<td style="font-family: sans-serif;font: bold;">Id</td>
-				<td><input type="text" name="id" value="${selectedsupplier.id}"></td>
+				<td style="font-size: large;">Id</td>
+				<td style="font-size: large;"><input type="text" name="id" value="${selectedsupplier.id}" required="required"></td>
 			</tr>
 
 			<tr>
-				<td style="font-family: sans-serif;font: bold;">Name</td>
-				<td><input type="text" name="name"
-					value="${selectedsupplier.name}"></td>
+				<td style="font-size: large;">Name</td>
+				<td style="font-size: large;"><input type="text" name="name"
+					value="${selectedsupplier.name}" required="required"></td>
 			</tr>
-
-			<tr>
-				<td style="font-family: sans-serif;font: bold;">Address</td>
-				<td><input type="text" name="address"
-					value="${selectedsupplier.address}"></td>
+	<tr>
+				<td style="font-size: large;">Email</td>
+				<td style="font-size: large;"><input type="text" name="email"
+					value="${selectedsupplier.email}" required="required"></td>
 			</tr>
 
 
 			<tr>
-				<td style="font-family: sans-serif;font: bold;"><input type="submit" value="Save"></td>
+				<td style="font-size: large;">Address</td>
+				<td style="font-size: large;"><input type="text" name="address"
+					value="${selectedsupplier.address}" required="required"></td>
 			</tr>
-		</table>
 
+
+			
+		</table><br><br>
+<input type="submit" value="Save" class="btn btn-success">
+</div>
 	</form>
 	<div>
 		<h2 align="center">Supplier List</h2>
 		<br>
+		<div class="col-xs-2">
+		<input  id="myInput" class="form-control" type="text" placeholder="Search.." ></div>
 
-		<table border="1px solid" border: medium; align="center">
-			<tr>
-				<th bgcolor="grey">Id</th>
-				<th bgcolor="grey">Name</th>
-				<th bgcolor="grey">Address</th>
-				<th bgcolor="grey">Action</th>
-			</tr>
+		<table border="1px solid" border: medium; align="center" class="table table-dark table-striped">
+		<thead>	<tr>
+				<th style="font-size: large;">Id</th>
+				<th style="font-size: large;">Name</th>
+				<th style="font-size: large;">Email</th>
+				<th style="font-size: large;">Address</th>
+				<th style="font-size: large;" >Action</th>
+			</tr></thead>
 
 			<c:forEach items="${suppliers}" var="supplier">
-
+<tbody id="myTable">
 				<tr>
 					<td>${supplier.id}</td>
 					<td>${supplier.name }</td>
+					<td>${supplier.email}</td>
 					<td>${supplier.address}</td>
 					<td><a href="supplierdelete?id=${supplier.id}">Delete</a> | <a
 						href="supplierupdate?id=${supplier.id}">Edit</a></td>
 
 				</tr>
-
+</tbody>
 			</c:forEach>
 
 
@@ -73,6 +81,17 @@
 		</table>
 
 	</div>
+	<script >
+$(document).ready(function(){
+	  $("#myInput").on("keyup", function() {
+	    var value = $(this).val().toLowerCase();
+	    $("#myTable tr").filter(function() {
+	      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+	    });
+	  });
+	});
+	</script>
+	
 
 </body>
 </html>

@@ -11,9 +11,9 @@
 </head>
 <body>
 
-<a href="managecategories"  style="font-family: sans-serif;">Manage Categories</a>&emsp;
-<a href="managesuppliers"  style="font-family: sans-serif;" >Manage Suppliers</a>&emsp;
-<a href="manageproducts"  style="font-family: sans-serif;">Manage Products</a>&emsp;<br><br><br><br>
+<a href="managecategories"  style="font-family: sans-serif;font-size: medium;">Manage Categories</a>&emsp;
+<a href="managesuppliers"  style="font-family: sans-serif;font-size: medium;" >Manage Suppliers</a>&emsp;
+<a href="manageproducts"  style="font-family: sans-serif;font-size: medium;">Manage Products</a>&emsp;<br><br><br><br>
 
 
 

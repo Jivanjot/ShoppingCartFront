@@ -27,16 +27,15 @@
 <tr><td style="font-size: large;">Quantity          </td>
 <td><input type="hidden" name="quantity" value="${cart.quantity }"><h4>${cart.quantity }</h4>
 </td></tr>
-
+<br>
 </table>
-<a href="deleteitem?item=${cart.id}&email=${cart.email}">Delete this from cart</a> 
-</div>
+<h3align="center">Order Placed successfull and will be dispatched.</h3>
 <br><br>
+
+
+</div>
+
 </c:forEach>
-<form action="placeorder" method="post">
-<div style="text-align: right;">
-    <button type="submit" style="text-align: right;margin-right:10%;margin-bottom: 5%;" class="btn btn-primary btn-md">Place your order</button>    
-  </div>
-</form>
+
 </body>
 </html>

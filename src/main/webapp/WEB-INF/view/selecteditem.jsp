@@ -9,33 +9,35 @@
 <body>
 
 <form action="addcart" method="post">
+<div style="text-align: center;">
+<img height="300" src="${uploadPhotoPath}" alt="product image" ><br><br>
 <table align="center" width="500">
-<tr><td><img src="${productimage}" alt="product image" >
-                        </tr>
-<tr><td>Product Name:          </td>
-<td><input type="hidden" value="${selectedproduct.name}" name="name" >${selectedproduct.name}</td>
+
+<tr><td style="font-size: large;">Product Name:          </td>
+<td style="font-size: large;"><input type="hidden" value="${selectedproduct.name}" name="name" >${selectedproduct.name}</td>
 
 </tr>
 
-<tr><td>Product Description:          </td>
-<td><input type="hidden" value="${selectedproduct.description}" name="description" >${selectedproduct.description}</td>
+<tr><td  style="font-size: large;">Product Description:          </td>
+<td  style="font-size: large;"><input type="hidden" value="${selectedproduct.description}" name="description" >${selectedproduct.description}</td>
 
 </tr>
 
-<tr><td>Product Price:          </td>
-<td><input type="hidden" value="${selectedproduct.price}" name="price" >${selectedproduct.price}</td>
+<tr><td  style="font-size: large;">Product Price:          </td>
+<td  style="font-size: large;"><input type="hidden" value="${selectedproduct.price}" name="price" >${selectedproduct.price}</td>
 
 </tr>
 
-<tr><td>Quantity          </td>
- <td><input type="number" name="quantity" value="1" >
+<tr><td  style="font-size: large;">Quantity          </td>
+ <td  style="font-size: large;"><input type="number" name="quantity" value="1" required="required" >
 </td></tr>
+<tr><td  style="font-size: large;"><input type="hidden" name="id" value="${selectedproduct.id}"></td></tr>
 
-<tr> <td><input type="submit" value="add to cart">
-</tr>
 
-</table>
 
+</table><br>
+<input type="submit" value="add to cart"  class="btn btn-success" style="text-align: center;">
+</div>
 
 </form>
 

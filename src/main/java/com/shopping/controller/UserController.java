@@ -19,8 +19,8 @@ import com.shopping.domain.User;
 
 @Controller
 public class UserController {
-	
-	private static final Logger log=LoggerFactory.getLogger(UserController.class);
+
+	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
 	private User user;
@@ -32,34 +32,31 @@ public class UserController {
 	private Cart cart;
 	@Autowired
 	private CartDao cartDao;
-	
-	
+
 	@PostMapping("/validate")
-	public ModelAndView user(@RequestParam("email") String name,@RequestParam("password") String pass)
-{
-/*    log.debug("starting of validate method in User Controller");
-*/		
-		ModelAndView mv=new ModelAndView("home");
- 
-  user=userDao.validate(name, pass);
-   if(user==null)
-   {
-	   mv.addObject("Error","No such found User");
-   }
-   else
-   {
-	  httpSession.setAttribute("name","Welcome  "+user.getName());
-	  httpSession.setAttribute("loggedInUser",user.getEmail());
-	  List<Cart> size=cartDao.getAll(user.getEmail());
-		httpSession.setAttribute("size",size.size());
-	   if(user.getRole()=='A')
-	   {
-		   httpSession.setAttribute("isAdmin",true);
-		  
-	   }
-	   
-   }
- 
- return mv;
-}
+	public ModelAndView user(@RequestParam("email") String name, @RequestParam("password") String pass) {
+		log.debug("starting of user method in User Controller");
+		ModelAndView mv = new ModelAndView("home");
+
+		user = userDao.validate(name, pass);
+		if (user == null) {
+			mv.addObject("Error", "No such found User");
+		} else {
+			httpSession.setAttribute("welcomename", "Welcome  " + user.getName());
+			httpSession.setAttribute("name", user.getName());
+			httpSession.setAttribute("loggedInUser", user.getEmail());
+			httpSession.setAttribute("loggedInUserAddress", user.getAddress());
+			List<Cart> size = cartDao.getAll1(user.getEmail(), 'N');
+			httpSession.setAttribute("size", size.size());
+			List<Cart> size1 = cartDao.getAll1(user.getEmail(), 'O');
+			httpSession.setAttribute("size1", size1.size());
+			if (user.getRole() == 'A') {
+				httpSession.setAttribute("isAdmin", true);
+
+			}
+
+		}
+		log.debug("ending of user of UserController");
+		return mv;
+	}
 }

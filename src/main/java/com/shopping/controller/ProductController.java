@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,51 +15,50 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.shopping.dao.CategoryDao;
 import com.shopping.dao.ProductDao;
-import com.shopping.dao.SupplierDao;
-import com.shopping.domain.Category;
 import com.shopping.domain.Product;
-import com.shopping.domain.Supplier;
 import com.shopping.util.FileUtil;
 
 @Controller
 public class ProductController {
-	private static String rootPath = System.getProperty("catalina.home");
-    private static final String imageDirectory="ShoppingCartImages";
-	
-	
+	// private static final String imageDirectory="ShoppingCartImages";
+
 	@Autowired
 	private Product product;
 	@Autowired
 	private ProductDao productDao;
+	Logger log = LoggerFactory.getLogger(ProductController.class);
 
-@Autowired
-HttpSession httpSession;
-	
+	@Autowired
+	HttpSession httpSession;
+	private static String rootPath = "resources" + File.separator + "images" + File.separator + "ShoppingCartImages"
+			+ File.separator;
+
 	@PostMapping("/productsave")
-	public ModelAndView saveProduct(@RequestParam("id") String id,@RequestParam("name") String name,@RequestParam("description") String description,@RequestParam("price") String price,@RequestParam("categoryId") String categoryId,@RequestParam("supplierId") String supplierId,@RequestParam("file") MultipartFile file) {
+	public ModelAndView saveProduct(@RequestParam("id") String id, @RequestParam("name") String name,
+			@RequestParam("description") String description, @RequestParam("price") String price,
+			@RequestParam("categoryId") String categoryId, @RequestParam("supplierId") String supplierId,
+			@RequestParam("file") MultipartFile file) {
+		log.debug("starting of saveProduct of ProductController");
 		ModelAndView mv = new ModelAndView("redirect:/manageproducts");
 		product.setId(id);
 		product.setName(name);
 		product.setDescription(description);
 		product.setPrice(Integer.parseInt(price));
-	    product.setCategoryId(categoryId);
+		product.setCategoryId(categoryId);
 		product.setSupplierId(supplierId);
-		
-		if (productDao.save(product) == true) {
+
+		try {
+			productDao.save(product);
 			mv.addObject("success", "Product added");
-			if(FileUtil.copyFile(file, id+".PNG"))
-			{
-				mv.addObject("uploadphoto","upload image successfull");
+			if (FileUtil.copyFile(file, id + ".PNG")) {
+				mv.addObject("uploadphoto", "upload image successfull");
+			} else {
+				mv.addObject("uploadphoto", "upload image not possible");
 			}
-			else
-			{
-				mv.addObject("uploadphoto","upload image not possible");	
-			}
-			
+			log.debug("ending of saveProduct of ProductController");
 			return mv;
-		} else {
+		} catch (Exception e) {
 			mv.addObject("error1", "Product not added");
 			return mv;
 		}
@@ -66,28 +67,35 @@ HttpSession httpSession;
 
 	@GetMapping("/productupdate{id}")
 	public ModelAndView updateProduct(@RequestParam("id") String id) {
+		log.debug("starting of updateProduct of ProductController");
 		ModelAndView mv = new ModelAndView("redirect:/manageproducts");
-		product=productDao.select(id);	
-		httpSession.setAttribute("selectedproduct",product);
+		product = productDao.select(id);
+		httpSession.setAttribute("selectedproduct", product);
+		log.debug("ending of updateProduct of ProductController");
 		return mv;
-		
+
 	}
 
 	@GetMapping("/productselect{id}")
 	public ModelAndView selectProduct(@RequestParam("id") String id) {
+		log.debug("starting of selectProduct of ProductController");
 		ModelAndView mv = new ModelAndView("home");
 		product = productDao.select(id);
-		mv.addObject("clickedselecteditem",true);
+		mv.addObject("clickedselecteditem", true);
 		mv.addObject("selectedproduct", product);
-		mv.addObject("productimage",rootPath+File.separator+imageDirectory+File.separator+product.getId()+".PNG");
+
+		mv.addObject("uploadPhotoPath", rootPath + product.getId() + ".PNG");
+		log.debug("ending of selectProduct of ProductController");
 		return mv;
 	}
 
 	@GetMapping("/productdelete{id}")
 	public ModelAndView deleteProduct(@RequestParam("id") String id) {
+		log.debug("starting of deleteProduct of ProductController");
 		ModelAndView mv = new ModelAndView("redirect:/manageproducts");
 		if (productDao.delete(id) == true) {
-			mv.addObject("success", "Product deleted");
+			mv.addObject(" success", "Product deleted");
+			log.debug("ending of deleteProduct of ProductController");
 			return mv;
 		}
 
@@ -99,6 +107,7 @@ HttpSession httpSession;
 
 	@GetMapping("/productgetall")
 	public ModelAndView getAllProduct(@RequestParam("id") String id) {
+		log.debug("starting of getAllProduct of ProductController");
 		ModelAndView mv = new ModelAndView("home");
 		List<Product> c = productDao.getAll();
 		if (c == null) {
@@ -106,6 +115,7 @@ HttpSession httpSession;
 			return mv;
 
 		} else {
+			log.debug("ending of getAllProduct of ProductController");
 			mv.addObject("success", c);
 			return mv;
 		}
