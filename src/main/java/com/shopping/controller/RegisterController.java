@@ -46,8 +46,8 @@ public class RegisterController {
      if(validate==true)
 			{
 	 
-	    if(Mailer.send("mailfromshoppingcart@gmail.com", "P@5sword", email, "Registration", "Welcome to Shopping Cart, your registration is successfull in shopping cart site")==true)
-	    {
+	   // if(Mailer.send("mailfromshoppingcart@gmail.com", "P@5sword", email, "Registration", "Welcome to Shopping Cart, your registration is successfull in shopping cart site")==true)
+	    //{
 			boolean a=userDao.save(user);
 			
 			if(a==true)
@@ -59,11 +59,11 @@ public class RegisterController {
 			{
 				mv.addObject("error1","Not Registered");
 			}
-			}
-			else
-			{
-				mv.addObject("notExistEmail","true");
-			}
+			//}
+			//else
+			//{
+			//	mv.addObject("notExistEmail","true");
+			//}
 	    }
 	    else
 	    {

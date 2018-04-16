@@ -29,11 +29,15 @@ public class SupplierController {
 	HttpSession httpSession;
 
 	@PostMapping("/suppliersave")
-	public ModelAndView saveSupplier(@ModelAttribute Supplier supplier) {
+	public ModelAndView saveSupplier(@RequestParam("id") String id,@RequestParam("name") String name,@RequestParam("address") String address,@RequestParam("email") String email) {
 		log.debug("starting of saveSupplier of SupplierController");
 		ModelAndView mv = new ModelAndView("redirect:/managesuppliers");
 
 		try {
+			supplier.setId(id);
+			supplier.setName(name);
+			supplier.setAddress(address);
+			supplier.setEmail(email);
 			supplierDao.save(supplier);
 			mv.addObject("success", "Supplier added");
 			log.debug("ending of saveSupplier of SupplierController");

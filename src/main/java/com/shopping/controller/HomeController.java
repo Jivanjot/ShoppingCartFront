@@ -30,10 +30,11 @@ public class HomeController {
 	private static String rootPath = "resources" + File.separator + "images" + File.separator + "ShoppingCartImages"
 			+ File.separator;
 
-	// http://localhost:8080/ShoppingCartFrontEnd/
+
 	@GetMapping("/")
 	public ModelAndView home() {
 		log.debug("starting of home of HomeController");
+    log.info("starting of home of HomeController");
 		ModelAndView mv = new ModelAndView("home");
 		List<Category> categories = categoryDao.getAll();
 		httpSession.setAttribute("categories", categories);

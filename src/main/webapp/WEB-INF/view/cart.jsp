@@ -29,10 +29,14 @@
 </td></tr>
 
 </table>
-<a href="deleteitem?item=${cart.id}&email=${cart.email}">Delete this from cart</a> 
+<a href="deleteitem?item=${cart.id}&email=${cart.email}">Delete this from cart</a>
 </div>
 <br><br>
 </c:forEach>
+<div style="text-align: center;">
+  <h2>Total &nbsp;&nbsp;<span class="label label-default">${total}</span></h2>
+
+</div>
 <form action="placeorder" method="post">
 <div style="text-align: right;">
     <button type="submit" style="text-align: right;margin-right:10%;margin-bottom: 5%;" class="btn btn-primary btn-md">Place your order</button>    

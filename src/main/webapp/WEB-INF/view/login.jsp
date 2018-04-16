@@ -44,8 +44,8 @@
             <button type="submit" class="btn btn-primary btn-block">Log in</button>
         </div>
         <div class="clearfix">
-            <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
-            <a href="forgotpassword" class="pull-right">Forgot Password?</a>
+<!--             <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
+ -->            <a href="forgotpassword" class="pull-right">Forgot Password?</a>
         </div>        
     </form>
     

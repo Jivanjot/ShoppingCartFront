@@ -65,7 +65,7 @@ public class CartController {
 			boolean a = cartDao.save(cart);
 			if (a == true) {
 				mv.addObject("addcartmessage", "saving to cart successfull");
-				httpSession.getAttribute("loggedInUser");
+				
 				List<Cart> size = cartDao.getAll1(email, 'N');
 				httpSession.setAttribute("size", size.size());
 			} else {
@@ -81,6 +81,7 @@ public class CartController {
 	@GetMapping("/mycart")
 	public ModelAndView myCart() {
 		log.debug("starting of myCart of CartController");
+		int total=0;
 		ModelAndView mv = new ModelAndView("home");
 		String email = (String) httpSession.getAttribute("loggedInUser");
 		if (email == null) {
@@ -92,7 +93,13 @@ public class CartController {
 		List<Cart> carts = cartDao.getAll1(email, 'N');
 		mv.addObject("carts", carts);
 		mv.addObject("isUserClickedCart", true);
-		log.debug("ending of mycart of CartController");
+	    for(int i=0;i<carts.size();i++)
+	    {
+	    int price=	 (carts.get(i).getPrice())*(carts.get(i).getQuantity());
+	    total=total+price;
+	    }
+         mv.addObject("total",total);
+	    log.debug("ending of mycart of CartController");
 		return mv;
 	}
 
@@ -153,7 +160,7 @@ public class CartController {
 			}
 			Supplier supplier = supplierDao.select(b.get(j));
 			String to = supplier.getEmail();
-			Mailer.send("singh.jivan0390@gmail.com", "9872172827", to, "Order", "Hello!! " + supplier.getName()
+			Mailer.send("mailfromshoppingcart@gmail.com", "9872172827", to, "Order", "Hello!! " + supplier.getName()
 					+ ", You have to deliver products " + first + " to " + name + "  and address is " + address);
 			first = "";
 			productName = "";

@@ -13,7 +13,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<title>Insert title here</title>
+<title>Shopping Cart</title>
 
 
 </head>
@@ -38,25 +38,25 @@
 			class="glyphicon glyphicon-user"></span> Signup</a>
 	</c:if>
 	<c:if test="${not empty loggedInUser}">
-		<a href="logout"
-			style="float: right; padding-right: 2%; font-size: large;"><span
-			class="glyphicon glyphicon-log-out"></span> Logout</a>
-	</c:if>
-	<c:if test="${not empty loggedInUser}">
 		<a href="mycart"
-			style="float: right; padding-right: 2%; font-size: large;"> <span
+			style="float: right; padding-right: 8%; font-size: large;"> <span
 			class="glyphicon glyphicon-shopping-cart"></span> MyCart(${size})
 		</a>
-	</c:if>
-
-	<br>
-	<br>
+	</c:if><br><br>
 	<c:if test="${not empty loggedInUser}">
 		<a href="orderplaced"
-			style="float: right; padding-right: 6%; font-size: large;"> <span
+			style="float: right; padding-right:4% ; font-size: large;"> <span
 			class="glyphicon glyphicon-ok-circle"></span> Placed Orders(${size1})
 		</a>
+	</c:if><br><br>
+	
+
+	<c:if test="${not empty loggedInUser}">
+		<a href="logout"
+			style="float: right; padding-right: 10%;  font-size: large;"><span
+			class="glyphicon glyphicon-log-out"></span> Logout</a>
 	</c:if>
+	
 	<h4>${welcomename}</h4>
 
 

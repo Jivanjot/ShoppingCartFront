@@ -118,12 +118,12 @@
 
  
         <div class="form-group">
-            <input type="number" class="form-control" name="mobile" placeholder="Mobile" required="required">
+            <input type="number" class="form-control" name="mobile" placeholder="Mobile">
         </div>
 
 
         <div class="form-group">
-            <input type="text" class="form-control" name="address" placeholder="Address" >
+            <input type="text" class="form-control" name="address" placeholder="Address" required="required">
         </div>
 
 
