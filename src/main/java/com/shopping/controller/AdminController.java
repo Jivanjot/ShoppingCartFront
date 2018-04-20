@@ -61,6 +61,12 @@ public class AdminController {
 	public ModelAndView managesupplier() {
 		log.debug("starting of manageSupplier of AdminController");
 		ModelAndView mv = new ModelAndView("home");
+		String email = (String) httpSession.getAttribute("loggedInUser");
+		if (email == null) {
+			mv.addObject("addcartmessage", "Firstly login with your id");
+			return mv;
+
+		}
 		mv.addObject("isAdminClickedSupplier", true);
 		List<Supplier> suppliers = supplierDao.getAll();
 		httpSession.setAttribute("suppliers", suppliers);
@@ -73,6 +79,12 @@ public class AdminController {
 	public ModelAndView manageproduct() {
 		log.debug("starting of manageproduct of AdminController");
 		ModelAndView mv = new ModelAndView("home");
+		String email = (String) httpSession.getAttribute("loggedInUser");
+		if (email == null) {
+			mv.addObject("addcartmessage", "Firstly login with your id");
+			return mv;
+
+		}
 		mv.addObject("isAdminClickedProduct", true);
 		List<Product> products = productDao.getAll();
 		List<Supplier> suppliers = supplierDao.getAll();

@@ -20,16 +20,17 @@
       
     
     <ul class="nav navbar-nav">
+	     <li ><a href="home1" style="font-style: oblique;">Home<span class="caret"></span></a></li>
 	
     <c:forEach items="${categories}" var="category"> 
-     <li class="dropdown"><a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">${category.name}<span class="caret"></span></a>
+     <li class="dropdown"><a href="javascript:void(0)" style="font-style: oblique;" class="dropdown-toggle" data-toggle="dropdown">${category.name}<span class="caret"></span></a>
      
    
     
      <ul class="dropdown-menu">
      
  <c:forEach items="${category.products}" var="products">
-				 <li><a href ="productselect?id=${products.id}">${products.name}</a></li>
+				 <li><a href ="productselect?id=${products.id}" style="font-style: oblique;">${products.name}</a></li>
 	
 				 </c:forEach> 
 	 </ul>
@@ -44,8 +45,8 @@
    
 
 </ul>
-
 </div>
+
 </nav>
 
 

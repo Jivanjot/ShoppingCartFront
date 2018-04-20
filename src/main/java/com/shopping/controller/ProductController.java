@@ -1,6 +1,5 @@
 package com.shopping.controller;
 
-import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -31,8 +30,8 @@ public class ProductController {
 
 	@Autowired
 	HttpSession httpSession;
-	private static String rootPath = "resources" + File.separator + "images" + File.separator + "ShoppingCartImages"
-			+ File.separator;
+	private static String rootPath ="resources/images/ShoppingCartImages/";
+
 
 	@PostMapping("/productsave")
 	public ModelAndView saveProduct(@RequestParam("id") String id, @RequestParam("name") String name,
@@ -81,10 +80,14 @@ public class ProductController {
 		log.debug("starting of selectProduct of ProductController");
 		ModelAndView mv = new ModelAndView("home");
 		product = productDao.select(id);
+	/*	 List<Product> products= productDao.getAll();
+
+		  httpSession.setAttribute("products", products);*/
 		mv.addObject("clickedselecteditem", true);
 		mv.addObject("selectedproduct", product);
+		
 
-		mv.addObject("uploadPhotoPath", rootPath + product.getId() + ".PNG");
+		mv.addObject("uploadPhotoPath", rootPath );
 		log.debug("ending of selectProduct of ProductController");
 		return mv;
 	}

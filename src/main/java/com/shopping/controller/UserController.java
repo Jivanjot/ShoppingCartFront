@@ -13,12 +13,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.shopping.dao.CartDao;
+import com.shopping.dao.ProductDao;
 import com.shopping.dao.UserDao;
 import com.shopping.domain.Cart;
+import com.shopping.domain.Product;
 import com.shopping.domain.User;
 
 @Controller
 public class UserController {
+
+	private static String rootPath ="resources/images/ShoppingCartImages/";
 
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
@@ -32,8 +36,12 @@ public class UserController {
 	private Cart cart;
 	@Autowired
 	private CartDao cartDao;
-
-	@PostMapping("/validate")
+	@Autowired
+	private Product product;
+@Autowired
+private ProductDao productDao;
+	
+@PostMapping("/validate")
 	public ModelAndView user(@RequestParam("email") String name, @RequestParam("password") String pass) {
 		log.debug("starting of user method in User Controller");
 		ModelAndView mv = new ModelAndView("home");
@@ -54,8 +62,16 @@ public class UserController {
 				httpSession.setAttribute("isAdmin", true);
 
 			}
-
-		}
+			else {
+			 List<Product> products= productDao.getAll();
+			 httpSession.setAttribute("defaultImages",true);
+				
+			  httpSession.setAttribute("products", products);
+			  
+				httpSession.setAttribute("uploadPhotoPath", rootPath);
+			}
+		} 
+		
 		log.debug("ending of user of UserController");
 		return mv;
 	}

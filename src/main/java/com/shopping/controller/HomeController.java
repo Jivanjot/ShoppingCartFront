@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.shopping.dao.CategoryDao;
+import com.shopping.dao.ProductDao;
 import com.shopping.domain.Category;
+import com.shopping.domain.Product;
 
 @Controller
 public class HomeController {
@@ -24,11 +26,14 @@ public class HomeController {
 	private CategoryDao categoryDao;
 	@Autowired
 	private HttpSession httpSession;
+	@Autowired
+	private Product product;
+	@Autowired
+	private ProductDao productDao;
 
 	Logger log = LoggerFactory.getLogger(HomeController.class);
 
-	private static String rootPath = "resources" + File.separator + "images" + File.separator + "ShoppingCartImages"
-			+ File.separator;
+	private static String rootPath ="resources/images/ShoppingCartImages/";
 
 
 	@GetMapping("/")
@@ -38,8 +43,10 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView("home");
 		List<Category> categories = categoryDao.getAll();
 		httpSession.setAttribute("categories", categories);
+	  List<Product> products= productDao.getAll();
+		
+	  httpSession.setAttribute("products", products);
 		httpSession.setAttribute("uploadPhotoPath", rootPath);
-
 		log.debug("ending of home of HomeController");
 
 		return mv;
@@ -73,8 +80,27 @@ public class HomeController {
 		httpSession.invalidate();
 		List<Category> categories = categoryDao.getAll();
 		httpSession.setAttribute("categories", categories);
+		 List<Product> products= productDao.getAll();
+			
+		  httpSession.setAttribute("products", products);
+			httpSession.setAttribute("uploadPhotoPath", rootPath);
 		log.debug("ending of logout of HomeController");
 		return mv;
 	}
 
+	@RequestMapping("/about")
+	public ModelAndView about()
+	{
+		ModelAndView mv=new ModelAndView("about");
+		return mv;
+	}
+	
+
+	@RequestMapping("/home1")
+	public ModelAndView home1()
+	{
+		ModelAndView mv=new ModelAndView("redirect:/");
+		return mv;
+	}
+	
 }

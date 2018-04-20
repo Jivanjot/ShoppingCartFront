@@ -10,26 +10,26 @@
 
 <form action="addcart" method="post">
 <div style="text-align: center;">
-<img height="300" src="${uploadPhotoPath}" alt="product image" ><br><br>
-<table align="center" width="500">
+<img height="200" src="${uploadPhotoPath}${selectedproduct.id}.PNG" alt="product image"><br><br>
+<table align="center" width="400" >
 
-<tr><td style="font-size: large;">Product Name:          </td>
+<tr ><td style="font-size: large;text-align: left;">Product Name:</td>
 <td style="font-size: large;"><input type="hidden" value="${selectedproduct.name}" name="name" >${selectedproduct.name}</td>
 
 </tr>
 
-<tr><td  style="font-size: large;">Product Description:          </td>
+<tr><td  style="font-size: large;text-align: left;">Product Description:          </td>
 <td  style="font-size: large;"><input type="hidden" value="${selectedproduct.description}" name="description" >${selectedproduct.description}</td>
 
 </tr>
 
-<tr><td  style="font-size: large;">Product Price:          </td>
+<tr><td  style="font-size: large;text-align: left;">Product Price:          </td>
 <td  style="font-size: large;"><input type="hidden" value="${selectedproduct.price}" name="price" >${selectedproduct.price}</td>
 
 </tr>
 
-<tr><td  style="font-size: large;">Quantity          </td>
- <td  style="font-size: large;"><input type="number" name="quantity" value="1" required="required" >
+<tr><td  style="font-size: large;text-align: left;">Quantity          </td>
+ <td  style="font-size: large;"><input type="number" name="quantity" value="1" id="quantity" required="required" >
 </td></tr>
 <tr><td  style="font-size: large;"><input type="hidden" name="id" value="${selectedproduct.id}"></td></tr>
 
@@ -37,8 +37,9 @@
 
 </table><br>
 <input type="submit" value="add to cart"  class="btn btn-success" style="text-align: center;">
-</div>
+  <a href="buynow?id=${selectedproduct.id}" class="btn btn-warning" role="button">Buy Now</a>
 
+</div>
 </form>
 
 

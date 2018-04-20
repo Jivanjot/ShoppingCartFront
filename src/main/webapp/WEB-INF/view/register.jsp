@@ -163,7 +163,6 @@
 		document.getElementById("demo").innerHTML="Passwords are not same";
 		return false;
 		}
-	} </script>
+	} 
 
-</body>
-</html>                                		                            
+                              		                            
